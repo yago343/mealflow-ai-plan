@@ -140,9 +140,6 @@ const LandingPage = () => {
             <button onClick={() => scrollToSection('faq')} className="text-brand-text hover:text-brand-primary transition-colors">
               FAQ
             </button>
-            <Button className="btn-primary" onClick={() => window.open(CHECKOUT_URL, '_blank')}>
-              Começar
-            </Button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -170,9 +167,6 @@ const LandingPage = () => {
               <button onClick={() => scrollToSection('faq')} className="block w-full text-left py-2 text-brand-text hover:text-brand-primary transition-colors">
                 FAQ
               </button>
-              <Button className="btn-primary w-full" onClick={() => window.open(CHECKOUT_URL, '_blank')}>
-                Começar
-              </Button>
             </div>
           </div>
         )}
@@ -488,6 +482,17 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="bg-brand-secondary py-12">
         <div className="container mx-auto px-4">
+          {/* Ver como funciona button */}
+          <div className="text-center mb-8">
+            <Button 
+              variant="outline"
+              className="btn-outline border-white text-white hover:bg-white hover:text-brand-secondary"
+              onClick={() => scrollToSection('como-funciona')}
+            >
+              Ver como funciona
+            </Button>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="font-poppins font-bold text-xl text-white mb-4">
