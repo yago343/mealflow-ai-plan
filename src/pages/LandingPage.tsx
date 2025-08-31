@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Smartphone, Calendar, BarChart, Bell, ShoppingCart, Target, ChevronDown, ChevronUp } from "lucide-react";
+import { Smartphone, Calendar, BarChart, Bell, ShoppingCart, Target, ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import heroMockup from "@/assets/hero-mockup.jpg";
@@ -13,6 +13,7 @@ const CHECKOUT_URL_MENSAL = "#checkout-mensal";
 const CHECKOUT_URL_ANUAL = "#checkout-anual";
 
 const LandingPage = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const benefits = [
@@ -113,6 +114,7 @@ const LandingPage = () => {
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -124,7 +126,50 @@ const LandingPage = () => {
             MealFlow AI
           </div>
 
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <button onClick={() => scrollToSection('beneficios')} className="text-brand-text hover:text-brand-primary transition-colors">
+              Benefícios
+            </button>
+            <button onClick={() => scrollToSection('como-funciona')} className="text-brand-text hover:text-brand-primary transition-colors">
+              Como Funciona
+            </button>
+            <button onClick={() => scrollToSection('precos')} className="text-brand-text hover:text-brand-primary transition-colors">
+              Preços
+            </button>
+            <button onClick={() => scrollToSection('faq')} className="text-brand-text hover:text-brand-primary transition-colors">
+              FAQ
+            </button>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 py-4">
+            <div className="container mx-auto px-4 space-y-4">
+              <button onClick={() => scrollToSection('beneficios')} className="block w-full text-left py-2 text-brand-text hover:text-brand-primary transition-colors">
+                Benefícios
+              </button>
+              <button onClick={() => scrollToSection('como-funciona')} className="block w-full text-left py-2 text-brand-text hover:text-brand-primary transition-colors">
+                Como Funciona
+              </button>
+              <button onClick={() => scrollToSection('precos')} className="block w-full text-left py-2 text-brand-text hover:text-brand-primary transition-colors">
+                Preços
+              </button>
+              <button onClick={() => scrollToSection('faq')} className="block w-full text-left py-2 text-brand-text hover:text-brand-primary transition-colors">
+                FAQ
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
